@@ -100,4 +100,12 @@ class ExampleUnitTest {
             viewModel.triStateStatus.value
         )
     }
+
+    // Comprova que el mètode setSelectedOption()
+    // guarda correctament l'opció seleccionada del RadioButton
+    @Test
+    fun checkSetSelectedOption() {
+        viewModel.setSelectedOption("Lamine Yamal")
+        assertEquals("Lamine Yamal", viewModel.selectedOption.value)
+    }
 }
