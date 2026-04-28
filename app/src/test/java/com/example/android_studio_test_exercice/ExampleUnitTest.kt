@@ -33,4 +33,15 @@ class ExampleUnitTest {
         assertEquals(ToggleableState.Off, viewModel.triStateStatus.value)
         assertEquals("Messi", viewModel.selectedOption.value)
     }
+
+    // Comprova que el mètode toggleEstatSwitch()
+    // canvia l'estat del Switch de true a false i de false a true
+    @Test
+    fun checkToggleEstatSwitch() {
+        viewModel.toggleEstatSwitch()
+        assertEquals(false, viewModel.estatSwitch.value)
+
+        viewModel.toggleEstatSwitch()
+        assertEquals(true, viewModel.estatSwitch.value)
+    }
 }
