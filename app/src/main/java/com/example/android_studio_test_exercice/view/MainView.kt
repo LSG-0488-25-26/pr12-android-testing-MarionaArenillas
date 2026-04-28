@@ -182,7 +182,9 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 // Cada clic canvia l'estat: Off → Indeterminate → On → Off
                 TriStateCheckbox(
                     state = triStateStatus,
-                    onClick = { myViewModel.toggleTriStateStatus() }
+                    onClick = { myViewModel.toggleTriStateStatus() },
+                    // testTag per localitzar el TristateCheckbox als tests de UI
+                    modifier = Modifier.testTag("triStateCheckbox_id")
                 )
             }
 
