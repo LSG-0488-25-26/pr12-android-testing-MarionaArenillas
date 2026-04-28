@@ -4,6 +4,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -93,5 +94,18 @@ class ExampleInstrumentedTest {
         composeTestRule
             .onNodeWithTag("searchTextField_id")
             .assertTextContains("prova")
+    }
+
+    // Comprova que en prémer el botó Buscar
+    // apareix el missatge de confirmació
+    @Test
+    fun checkSearchButton() {
+        composeTestRule
+            .onNodeWithTag("searchButton_id")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithTag("successMessage_id")
+            .assertIsDisplayed()
     }
 }
