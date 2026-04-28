@@ -181,7 +181,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             Text("Volum: ${sliderValue.toInt()}%")
             Slider(
                 value = sliderValue,
-                onValueChange = { /* myViewModel.setSliderValue(it) */ },
+                onValueChange = { myViewModel.setSliderValue(it) },
                 valueRange = 0f..100f
             )
 
