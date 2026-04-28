@@ -290,13 +290,17 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             if (showSnackbar) {
                 Text(
                     text = "Acció completada!",
-                    color = Color.Green
+                    color = Color.Green,
+                    // testTag per comprovar-lo als tests de UI
+                    modifier = Modifier.testTag("successMessage_id")
                 )
             }
 
             // Botó final que canvia de color i de text segons l'estat
             Button(
                 onClick = { myViewModel.toggle() },
+                // testTag per localitzar el boto final als test de UI
+                modifier = Modifier.testTag("toggleButton_id"),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (toggleState) Color.Green else Color.Red
                 )
