@@ -40,4 +40,12 @@ class ExampleInstrumentedTest {
             .onNodeWithTag("vegaCheckbox_id")
             .assertIsDisplayed()
     }
+
+    // Comprova que el TriStateCheckbox existeix i es mostra correctament
+    @Test
+    fun checkTriStateCheckboxExists() {
+        composeTestRule
+            .onNodeWithTag("triStateCheckbox_id")
+            .assertIsDisplayed()
+    }
 }
