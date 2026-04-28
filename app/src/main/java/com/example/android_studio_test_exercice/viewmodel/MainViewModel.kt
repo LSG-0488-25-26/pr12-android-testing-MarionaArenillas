@@ -1,75 +1,126 @@
 package com.example.android_studio_test_exercice.viewmodel
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+
 import androidx.compose.ui.state.ToggleableState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel: ViewModel {
-    // Atributs
-    private val _estatSwitch: MutableLiveData<Boolean>
-    public val estatSwitch: LiveData<Boolean>
+/* ViewModel encarregat de guardar l'estat de la pantalla i
+gestionar tota la lògica de la MainView seguint el patró MVVM
+*/
+class MainViewModel : ViewModel() {
 
-    private val _esVegetaria: MutableLiveData<Boolean>
-    public val esVegetaria: LiveData<Boolean>
+    // Estat del Switch (Wi-Fi activat o desactivat)
+    private val _estatSwitch = MutableLiveData(true)
+    val estatSwitch: LiveData<Boolean> = _estatSwitch
 
-    private val _esVega: MutableLiveData<Boolean>
-    public val esVega: LiveData<Boolean>
+    // Checkbox de l'opció Vegetaria
+    private val _esVegetaria = MutableLiveData(false)
+    val esVegetaria: LiveData<Boolean> = _esVegetaria
 
-    private val _esCarnivor: MutableLiveData<Boolean>
-    public val esCarnivor: LiveData<Boolean>
+    // Checkbox de l'opció Vega
+    private val _esVega = MutableLiveData(false)
+    val esVega: LiveData<Boolean> = _esVega
 
-    private val _triStateStatus: MutableLiveData<ToggleableState>
-    public val triStateStatus: LiveData<ToggleableState>
+    // Checkbox de l'opció Carnivor
+    private val _esCarnivor = MutableLiveData(true)
+    val esCarnivor: LiveData<Boolean> = _esCarnivor
 
-    private val _selectedOption: MutableLiveData<String>
-    public val selectedOption: LiveData<String>
+    // Estat del TriStateCheckbox (Off, Indeterminate o On)
+    private val _triStateStatus = MutableLiveData(ToggleableState.Off)
+    val triStateStatus: LiveData<ToggleableState> = _triStateStatus
 
-    /**
-     * Constructor de la classe HelloViewModel
-     * que inicialitzen els atributs
-     */
-    constructor() : super() {
-        this._estatSwitch = MutableLiveData<Boolean>(true)
-        this.estatSwitch = this._estatSwitch
+    // Valor seleccionat del grup de RadioButtons
+    private val _selectedOption = MutableLiveData("Messi")
+    val selectedOption: LiveData<String> = _selectedOption
 
-        this._esVegetaria = MutableLiveData<Boolean>(false)
-        this.esVegetaria = this._esVegetaria
+    // Valor actual del Slider
+    private val _sliderValue = MutableLiveData(0f)
+    val sliderValue: LiveData<Float> = _sliderValue
 
-        this._esVega = MutableLiveData<Boolean>(false)
-        this.esVega = this._esVega
+    // Controla si el DropdownMenu està obert o tancat
+    private val _expanded = MutableLiveData(false)
+    val expanded: LiveData<Boolean> = _expanded
 
-        this._esCarnivor = MutableLiveData<Boolean>(true)
-        this.esCarnivor = this._esCarnivor
+    // Element seleccionat dins del DropdownMenu
+    private val _selectedItem = MutableLiveData("Opció A")
+    val selectedItem: LiveData<String> = _selectedItem
 
-        this._triStateStatus = MutableLiveData<ToggleableState>(ToggleableState.Off)
-        this.triStateStatus = this._triStateStatus
+    // Text escrit dins del camp de cerca
+    private val _searchText = MutableLiveData("")
+    val searchText: LiveData<String> = _searchText
 
-        this._selectedOption = MutableLiveData<String>("Messi")
-        this.selectedOption = this._selectedOption
+    // Controla si es mostra el missatge "Acció completada!"
+    private val _showSnackbar = MutableLiveData(false)
+    val showSnackbar: LiveData<Boolean> = _showSnackbar
+
+    // Estat del botó final (Activat / Desactivat)
+    private val _toggleState = MutableLiveData(false)
+    val toggleState: LiveData<Boolean> = _toggleState
+
+    // Inverteix l'estat del Switch
+    fun toggleEstatSwitch() {
+        _estatSwitch.value = !(_estatSwitch.value ?: true)
     }
 
-    fun toggleEstatSwitch(){
-        this._estatSwitch.value = !(this._estatSwitch.value)!!
+    // Inverteix l'estat del checkbox Carnivor
+    fun toggleEsCarnivor() {
+        _esCarnivor.value = !(_esCarnivor.value ?: true)
     }
 
-    fun toggleEsCarnivor(){
-        this._esCarnivor.value = !(this._esCarnivor.value)!!
+    // Inverteix l'estat del checkbox Vegetaria
+    fun toggleEsVegetaria() {
+        _esVegetaria.value = !(_esVegetaria.value ?: false)
     }
 
-    fun toggleTriStateStatus(){
-        when(this._triStateStatus.value){
-            ToggleableState.On -> setTriStateStatus(ToggleableState.Off)
-            ToggleableState.Off -> setTriStateStatus(ToggleableState.Indeterminate)
-            ToggleableState.Indeterminate -> setTriStateStatus(ToggleableState.On)
-            null -> setTriStateStatus(ToggleableState.On)
+    // Inverteix l'estat del checkbox Vega
+    fun toggleEsVega() {
+        _esVega.value = !(_esVega.value ?: false)
+    }
+
+    // Canvia l'estat del TriStateCheckbox seguint aquest ordre:
+    // Off → Indeterminate → On → Off
+    fun toggleTriStateStatus() {
+        _triStateStatus.value = when (_triStateStatus.value) {
+            ToggleableState.Off -> ToggleableState.Indeterminate
+            ToggleableState.Indeterminate -> ToggleableState.On
+            ToggleableState.On -> ToggleableState.Off
+            null -> ToggleableState.Off
         }
     }
 
-    private fun setTriStateStatus(triState: ToggleableState){
-        this._triStateStatus.value = triState
+    // Guarda l'opció seleccionada del RadioButton
+    fun setSelectedOption(option: String) {
+        _selectedOption.value = option
+    }
+
+    // Actualitza el valor del Slider
+    fun setSliderValue(value: Float) {
+        _sliderValue.value = value
+    }
+
+    // Obre o tanca el DropdownMenu
+    fun setExpanded(value: Boolean) {
+        _expanded.value = value
+    }
+
+    // Guarda l'element seleccionat del DropdownMenu
+    fun setSelectedItem(item: String) {
+        _selectedItem.value = item
+    }
+
+    // Actualitza el text escrit al camp de cerca
+    fun setSearchText(text: String) {
+        _searchText.value = text
+    }
+
+    // Simula una cerca i mostra el missatge de confirmació
+    fun performSearch() {
+        _showSnackbar.value = true
+    }
+
+    // Canvia l'estat del botó final entre Activat i Desactivat
+    fun toggle() {
+        _toggleState.value = !(_toggleState.value ?: false)
     }
 }
