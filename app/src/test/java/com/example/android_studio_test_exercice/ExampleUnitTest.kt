@@ -127,4 +127,12 @@ class ExampleUnitTest {
         viewModel.setExpanded(false)
         assertEquals(false, viewModel.expanded.value)
     }
+
+    // Comprova que el mètode setSelectedItem()
+    // guarda correctament l'opció seleccionada del DropdownMenu
+    @Test
+    fun checkSetSelectedItem() {
+        viewModel.setSelectedItem("Opció B")
+        assertEquals("Opció B", viewModel.selectedItem.value)
+    }
 }
