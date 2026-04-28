@@ -188,7 +188,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             Box(modifier = Modifier.wrapContentSize()) {
                 Text(
                     text = selectedItem,
-                    modifier = Modifier.clickable { /* myViewModel.setExpanded(true) */ }
+                    modifier = Modifier.clickable { myViewModel.setExpanded(true) }
                 )
                 DropdownMenu(
                     expanded = expanded,
