@@ -135,4 +135,12 @@ class ExampleUnitTest {
         viewModel.setSelectedItem("Opció B")
         assertEquals("Opció B", viewModel.selectedItem.value)
     }
+
+    // Comprova que el mètode setSearchText()
+    // actualitza correctament el text del camp de cerca
+    @Test
+    fun checkSetSearchText() {
+        viewModel.setSearchText("prova")
+        assertEquals("prova", viewModel.searchText.value)
+    }
 }
