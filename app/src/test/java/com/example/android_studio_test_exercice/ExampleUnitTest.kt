@@ -143,4 +143,12 @@ class ExampleUnitTest {
         viewModel.setSearchText("prova")
         assertEquals("prova", viewModel.searchText.value)
     }
+
+    // Comprova que el mètode performSearch()
+    // activa el missatge de confirmació
+    @Test
+    fun checkPerformSearch() {
+        viewModel.performSearch()
+        assertEquals(true, viewModel.showSnackbar.value)
+    }
 }
