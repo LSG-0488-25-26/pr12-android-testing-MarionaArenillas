@@ -151,4 +151,15 @@ class ExampleUnitTest {
         viewModel.performSearch()
         assertEquals(true, viewModel.showSnackbar.value)
     }
+
+    // Comprova que el mètode toggle()
+    // canvia correctament l'estat del botó final
+    @Test
+    fun checkToggle() {
+        viewModel.toggle()
+        assertEquals(true, viewModel.toggleState.value)
+
+        viewModel.toggle()
+        assertEquals(false, viewModel.toggleState.value)
+    }
 }
