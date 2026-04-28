@@ -108,4 +108,12 @@ class ExampleUnitTest {
         viewModel.setSelectedOption("Lamine Yamal")
         assertEquals("Lamine Yamal", viewModel.selectedOption.value)
     }
+
+    // Comprova que el mètode setSliderValue()
+    // actualitza correctament el valor del Slider
+    @Test
+    fun checkSetSliderValue() {
+        viewModel.setSliderValue(75f)
+        assertEquals(75f, viewModel.sliderValue.value)
+    }
 }
