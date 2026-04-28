@@ -1,8 +1,8 @@
-## Android Testing: Unit Testing + UI Testing
+# Android Testing: Unit Testing + UI Testing
 
 ---
 
-### Descripció del projecte
+## Descripció del projecte
 
 Aquesta pràctica consisteix en completar una aplicació Android desenvolupada amb **Kotlin + Jetpack Compose**, seguint el patró d’arquitectura **MVVM (Model - View - ViewModel)**, i implementar tant **Unit Testing** com **Instrumental UI Testing**.
 
@@ -16,7 +16,7 @@ La pràctica parteix d’un repositori base proporcionat i s’han completat les
 
 ---
 
-### Funcionament de l’aplicació
+## Funcionament de l’aplicació
 
 L’aplicació mostra diferents components interactius de Jetpack Compose per practicar testing en Android:
 
@@ -43,14 +43,13 @@ L’aplicació mostra diferents components interactius de Jetpack Compose per pr
 
 Tota la lògica està gestionada des del `MainViewModel`, mentre que `MainView` només observa els estats mitjançant `observeAsState()`.
 
-
 Captura del resultat de l'aplicació:
 
-<!--![Unit Tests](docs/ExampleUnitTest.png)-->
+![View Aplication](docs/aplicacioResultat.png)
 
 ---
 
-### Arquitectura MVVM
+## Arquitectura MVVM
 
 - `MainView.kt`: conté la interfície d'usuari amb Compose.
 - `MainViewModel.kt`: conté els estats amb LiveData i la lògica de la pantalla.
@@ -59,7 +58,7 @@ Captura del resultat de l'aplicació:
 
 ---
 
-### Unit Testing
+## Unit Testing
 
 S'han creat tests per comprovar tots els mètodes del ViewModel:
 
@@ -82,7 +81,7 @@ Captura dels Unit Tests:
 
 ---
 
-### Instrumental UI Testing
+## Instrumental UI Testing
 
 S'han creat tests de UI per comprovar els composables principals:
 
@@ -101,6 +100,6 @@ Captura dels UI Tests:
 ![UI Tests](docs/ExampleInstrumentedTest.png)
 
 ---
-### Documentació extra
+## Documentació extra
 
-En aquest enllaç trobareu el video de la demostració de l'aplicació: 
+En aquest enllaç trobareu el video de la demostració de l'aplicació: [Video tests](https://drive.google.com/drive/folders/1R2CUE6wfIwF6TVYI9gszHrWpOcwcDENv?usp=share_link)
