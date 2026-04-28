@@ -208,11 +208,11 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
 
             OutlinedTextField(
                 value = searchText,
-                onValueChange = { /* myViewModel.setSearchText(it) */ },
+                onValueChange = { myViewModel.setSearchText(it) },
                 label = Text("Buscar..."),
                 modifier = Modifier
             )
-            Button(onClick = { /* myViewModel.performSearch() */ }) {
+            Button(onClick = { myViewModel.performSearch() }) {
                 Text("Buscar")
             }
 
@@ -224,7 +224,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = { /* myViewModel.toggle() */ },
+                onClick = { myViewModel.toggle() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (toggleState) Color.Green else Color.Red
                 )
