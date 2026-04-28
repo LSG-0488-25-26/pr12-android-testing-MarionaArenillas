@@ -48,4 +48,20 @@ class ExampleInstrumentedTest {
             .onNodeWithTag("triStateCheckbox_id")
             .assertIsDisplayed()
     }
+
+    // Comprova que els RadioButtons existeixen i es mostren correctament
+    @Test
+    fun checkRadioButtonsExist() {
+        composeTestRule
+            .onNodeWithTag("Vinicius_radio_id")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithTag("LamineYamal_radio_id")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithTag("Raphina_radio_id")
+            .assertIsDisplayed()
+    }
 }
