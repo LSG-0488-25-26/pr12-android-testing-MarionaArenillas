@@ -166,7 +166,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = selectedOption == player,
-                            onClick = { /* myViewModel.setSelectedOption(player) */ },
+                            onClick = { myViewModel.setSelectedOption(player) },
                             enabled = player != "Vinicius", // Deshabilitat
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = Color.Black,
