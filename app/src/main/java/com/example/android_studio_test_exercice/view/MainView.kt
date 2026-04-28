@@ -1,10 +1,11 @@
 package com.example.android_studio_test_exercice.view
 
+// Vista principal de l'aplicació.
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,8 +37,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.android_studio_test_exercice.viewmodel.MainViewModel
 
+// Rep el ViewModel per poder llegir els estats i cridar els seus mètodes.
 @Composable
 fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
+
+    // Ens subscrivim als LiveData del ViewModel.
+    // Quan un valor canvia, Compose torna a pintar automàticament la part afectada.
     val estatSwitch by myViewModel.estatSwitch.observeAsState(true)
     val esVegetaria by myViewModel.esVegetaria.observeAsState(true)
     val esVega by myViewModel.esVega.observeAsState(false)
@@ -45,7 +50,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
     val triStateStatus by myViewModel.triStateStatus.observeAsState(ToggleableState.Off)
     val selectedOption by myViewModel.selectedOption.observeAsState("Messi")
 
-    /* TODO */
+    // Estats dels altres composables de la pantalla
     val sliderValue by myViewModel.sliderValue.observeAsState(0f)
     val expanded by myViewModel.expanded.observeAsState(false)
     val selectedItem by myViewModel.selectedItem.observeAsState("Opció A")
@@ -53,16 +58,20 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
     val showSnackbar by myViewModel.showSnackbar.observeAsState(false)
     val toggleState by myViewModel.toggleState.observeAsState(false)
 
+    // Contenidor general de tota la pantalla
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp, 60.dp)
     ) {
 
+        // Organitza tots els elements verticalment
         Column(
             modifier = Modifier
                 .fillMaxSize()
         ) {
+
+            // Primera fila: text + Switch del Wi-Fi
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -74,6 +83,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     fontSize = 25.sp
                 )
 
+                // Switch connectat amb l'estat estatSwitch del ViewModel
                 Switch(
                     checked = estatSwitch,
                     onCheckedChange = { myViewModel.toggleEstatSwitch() },
@@ -86,6 +96,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 )
             }
 
+            // Bloc de checkboxes d'opcions de menú
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -98,6 +109,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     fontSize = 25.sp
                 )
 
+                // Capçaleres dels tres checkboxes
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -108,11 +120,14 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Text("Vegà/na", Modifier.align(CenterVertically).fillMaxWidth(1f))
                 }
 
+                // Checkboxes connectats amb el ViewModel
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentWidth()
                 ) {
+                    // Checkbox Carnívor/a.
+                    // Està deshabilitat, per tant l'usuari no el pot modificar des de la UI.
                     Checkbox(
                         checked = esCarnivor,
                         onCheckedChange = { myViewModel.toggleEsCarnivor() },
@@ -123,6 +138,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                             checkmarkColor = Color.Black
                         )
                     )
+
+                    // Checkbox Vegetarià/na
                     Checkbox(
                         checked = esVegetaria,
                         onCheckedChange = { myViewModel.toggleEsVegetaria() },
@@ -133,6 +150,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                             checkmarkColor = Color.Black
                         )
                     )
+
+                    // Checkbox Vegà/na
                     Checkbox(
                         checked = esVega,
                         onCheckedChange = { myViewModel.toggleEsVega() },
@@ -146,14 +165,18 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 }
             }
 
+            // TriStateCheckbox: pot tenir tres estats diferents
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text("TriState", Modifier.fillMaxWidth(), fontSize = 20.sp)
+
+                // Cada clic canvia l'estat: Off → Indeterminate → On → Off
                 TriStateCheckbox(
                     state = triStateStatus,
                     onClick = { myViewModel.toggleTriStateStatus() }
                 )
             }
 
+            // Grup de RadioButtons
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -162,42 +185,56 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             ) {
                 Text("Pilota d'Or:", fontSize = 20.sp)
 
+                // Es creen tres RadioButtons a partir d'una llista
                 listOf("Vinicius", "Lamine Yamal", "Raphina").forEach { player ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = selectedOption == player,
                             onClick = { myViewModel.setSelectedOption(player) },
-                            enabled = player != "Vinicius", // Deshabilitat
+                            enabled = player != "Vinicius", // Vinicius queda deshabilitat
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = Color.Black,
                                 unselectedColor = Color.LightGray
                             )
                         )
+
                         Text(player, Modifier.padding(start = 8.dp))
                     }
                 }
             }
 
+            // Text que mostra el valor actual del Slider
             Text("Volum: ${sliderValue.toInt()}%")
+
+            // Slider per seleccionar un valor entre 0 i 100
             Slider(
                 value = sliderValue,
                 onValueChange = { myViewModel.setSliderValue(it) },
                 valueRange = 0f..100f
             )
 
+            // DropdownMenu: menú desplegable amb diferents opcions
             Box(modifier = Modifier.wrapContentSize()) {
                 Text(
                     text = selectedItem,
-                    modifier = Modifier.clickable { myViewModel.setExpanded(true) }
+                    modifier = Modifier.clickable {
+                        // Obrim el menú quan es clica el text
+                        myViewModel.setExpanded(true)
+                    }
                 )
+
                 DropdownMenu(
                     expanded = expanded,
-                    onDismissRequest = { myViewModel.setExpanded(false) }
+                    onDismissRequest = {
+                        // Tanquem el menú quan es clica fora
+                        myViewModel.setExpanded(false)
+                    }
                 ) {
                     listOf("Opció A", "Opció B", "Opció C").forEach { option ->
                         DropdownMenuItem(
                             text = { Text(option) },
                             onClick = {
+                                // Guardem l'opció seleccionada i tanquem el menú
                                 myViewModel.setSelectedItem(option)
                                 myViewModel.setExpanded(false)
                             }
@@ -206,16 +243,20 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 }
             }
 
+            // Camp de text per escriure una cerca
             OutlinedTextField(
                 value = searchText,
                 onValueChange = { myViewModel.setSearchText(it) },
-                label = Text("Buscar..."),
+                label = { Text("Buscar...") },
                 modifier = Modifier
             )
+
+            // Botó que executa la cerca
             Button(onClick = { myViewModel.performSearch() }) {
                 Text("Buscar")
             }
 
+            // Missatge que només es mostra després de prémer el botó Buscar
             if (showSnackbar) {
                 Text(
                     text = "Acció completada!",
@@ -223,6 +264,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 )
             }
 
+            // Botó final que canvia de color i de text segons l'estat
             Button(
                 onClick = { myViewModel.toggle() },
                 colors = ButtonDefaults.buttonColors(
