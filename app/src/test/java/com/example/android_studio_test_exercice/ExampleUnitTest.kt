@@ -66,4 +66,15 @@ class ExampleUnitTest {
         viewModel.toggleEsVega()
         assertEquals(false, viewModel.esVega.value)
     }
+
+    // Comprova que el mètode toggleEsCarnivor()
+    // desactiva i torna a activar el checkbox de Carnivor
+    @Test
+    fun checkToggleEsCarnivor() {
+        viewModel.toggleEsCarnivor()
+        assertEquals(false, viewModel.esCarnivor.value)
+
+        viewModel.toggleEsCarnivor()
+        assertEquals(true, viewModel.esCarnivor.value)
+    }
 }
