@@ -116,4 +116,15 @@ class ExampleUnitTest {
         viewModel.setSliderValue(75f)
         assertEquals(75f, viewModel.sliderValue.value)
     }
+
+    // Comprova que el mètode setExpanded()
+    // obre i tanca correctament el DropdownMenu
+    @Test
+    fun checkSetExpanded() {
+        viewModel.setExpanded(true)
+        assertEquals(true, viewModel.expanded.value)
+
+        viewModel.setExpanded(false)
+        assertEquals(false, viewModel.expanded.value)
+    }
 }
