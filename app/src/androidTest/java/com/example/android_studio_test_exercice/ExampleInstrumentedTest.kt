@@ -96,8 +96,7 @@ class ExampleInstrumentedTest {
             .assertTextContains("prova")
     }
 
-    // Comprova que en prémer el botó Buscar
-    // apareix el missatge de confirmació
+    // Comprova que en prémer el botó Buscar apareix el missatge de confirmació
     @Test
     fun checkSearchButton() {
         composeTestRule
@@ -107,5 +106,21 @@ class ExampleInstrumentedTest {
         composeTestRule
             .onNodeWithTag("successMessage_id")
             .assertIsDisplayed()
+    }
+
+    // Comprova que el botó final canvia de text després de fer click
+    @Test
+    fun checkToggleButton() {
+        composeTestRule
+            .onNodeWithTag("toggleButton_id")
+            .assertTextContains("Desactivat")
+
+        composeTestRule
+            .onNodeWithTag("toggleButton_id")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithTag("toggleButton_id")
+            .assertTextContains("Activat")
     }
 }
