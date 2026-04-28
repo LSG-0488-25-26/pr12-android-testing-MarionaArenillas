@@ -233,10 +233,13 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             Box(modifier = Modifier.wrapContentSize()) {
                 Text(
                     text = selectedItem,
-                    modifier = Modifier.clickable {
+                    modifier = Modifier
+                        .clickable {
                         // Obrim el menú quan es clica el text
                         myViewModel.setExpanded(true)
-                    }
+                        }
+                        // testTag per localitzar el text que obre el DropdownMenu
+                        .testTag("dropdownText_id")
                 )
 
                 DropdownMenu(
@@ -248,7 +251,13 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 ) {
                     listOf("Opció A", "Opció B", "Opció C").forEach { option ->
                         DropdownMenuItem(
-                            text = { Text(option) },
+                            // cada opció del menú té un testTag diferent
+                            text = {
+                                Text(
+                                    text = option,
+                                    modifier = Modifier.testTag("${option}_dropdownItem_id")
+                                )
+                            },
                             onClick = {
                                 // Guardem l'opció seleccionada i tanquem el menú
                                 myViewModel.setSelectedItem(option)
