@@ -203,6 +203,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                         RadioButton(
                             selected = selectedOption == player,
                             onClick = { myViewModel.setSelectedOption(player) },
+                            // testTag diferent per cada RadioButton segons el jugador
+                            modifier = Modifier.testTag("${player}_radio_id"),
                             enabled = player != "Vinicius", // Vinicius queda deshabilitat
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = Color.Black,
