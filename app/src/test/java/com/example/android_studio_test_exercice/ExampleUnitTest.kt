@@ -77,4 +77,27 @@ class ExampleUnitTest {
         viewModel.toggleEsCarnivor()
         assertEquals(true, viewModel.esCarnivor.value)
     }
+
+    // Comprova que el TriStateCheckbox canvia correctament
+    // entre Off → Indeterminate → On → Off
+    @Test
+    fun checkToggleTriStateStatus() {
+        viewModel.toggleTriStateStatus()
+        assertEquals(
+            ToggleableState.Indeterminate,
+            viewModel.triStateStatus.value
+        )
+
+        viewModel.toggleTriStateStatus()
+        assertEquals(
+            ToggleableState.On,
+            viewModel.triStateStatus.value
+        )
+
+        viewModel.toggleTriStateStatus()
+        assertEquals(
+            ToggleableState.Off,
+            viewModel.triStateStatus.value
+        )
+    }
 }
