@@ -24,4 +24,20 @@ class ExampleInstrumentedTest {
             .onNodeWithTag("wifiSwitch_id")
             .assertIsDisplayed()
     }
+
+    // Comprova que els checkboxes existeixen i es mostren correctament
+    @Test
+    fun checkCheckboxesExist() {
+        composeTestRule
+            .onNodeWithTag("carnivorCheckbox_id")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithTag("vegetariaCheckbox_id")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithTag("vegaCheckbox_id")
+            .assertIsDisplayed()
+    }
 }
