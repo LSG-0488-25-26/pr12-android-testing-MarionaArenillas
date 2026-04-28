@@ -125,7 +125,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     )
                     Checkbox(
                         checked = esVegetaria,
-                        onCheckedChange = { TODO() },
+                        onCheckedChange = { myViewModel.toggleEsVegetaria() },
                         modifier = Modifier.fillMaxWidth(0.33f),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
@@ -135,7 +135,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     )
                     Checkbox(
                         checked = esVega,
-                        onCheckedChange = { myViewModel.toggleEsVegetaria() },
+                        onCheckedChange = { myViewModel.toggleEsVega() },
                         modifier = Modifier.fillMaxWidth(0.33f),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
