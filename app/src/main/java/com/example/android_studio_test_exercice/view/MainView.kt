@@ -135,7 +135,9 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esCarnivor,
                         onCheckedChange = { myViewModel.toggleEsCarnivor() },
-                        modifier = Modifier.fillMaxWidth(0.20f),
+                        modifier = Modifier
+                            .fillMaxWidth(0.20f)
+                            .testTag("carnivorCheckbox_id"),
                         enabled = false,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
@@ -147,7 +149,9 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esVegetaria,
                         onCheckedChange = { myViewModel.toggleEsVegetaria() },
-                        modifier = Modifier.fillMaxWidth(0.33f),
+                        modifier = Modifier
+                            .fillMaxWidth(0.33f)
+                            .testTag("vegetariaCheckbox_id"),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
@@ -159,7 +163,9 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esVega,
                         onCheckedChange = { myViewModel.toggleEsVega() },
-                        modifier = Modifier.fillMaxWidth(0.33f),
+                        modifier = Modifier
+                            .fillMaxWidth(0.33f)
+                            .testTag("vegaCheckbox_id"),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
