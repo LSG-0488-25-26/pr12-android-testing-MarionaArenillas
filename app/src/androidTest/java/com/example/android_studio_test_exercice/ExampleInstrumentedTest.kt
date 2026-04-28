@@ -1,24 +1,27 @@
 package com.example.android_studio_test_exercice
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.filters.LargeTest
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
-
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+@LargeTest
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    // Regla que obre la MainActivity per poder testejar la UI real
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    // Comprova que el Switch del Wi-Fi existeix i es mostra a la pantalla
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.android_studio_test_exercice", appContext.packageName)
+    fun checkWifiSwitchExists() {
+        composeTestRule
+            .onNodeWithTag("wifiSwitch_id")
+            .assertIsDisplayed()
     }
 }
