@@ -44,4 +44,15 @@ class ExampleUnitTest {
         viewModel.toggleEstatSwitch()
         assertEquals(true, viewModel.estatSwitch.value)
     }
+
+    // Comprova que el mètode toggleEsVegetaria()
+    // activa i desactiva el checkbox de Vegetarià/na
+    @Test
+    fun checkToggleEsVegetaria() {
+        viewModel.toggleEsVegetaria()
+        assertEquals(true, viewModel.esVegetaria.value)
+
+        viewModel.toggleEsVegetaria()
+        assertEquals(false, viewModel.esVegetaria.value)
+    }
 }
