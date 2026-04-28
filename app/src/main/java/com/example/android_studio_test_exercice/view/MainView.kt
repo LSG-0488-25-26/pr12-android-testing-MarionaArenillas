@@ -255,7 +255,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                             text = {
                                 Text(
                                     text = option,
-                                    modifier = Modifier.testTag("${option}_dropdownItem_id")
+                                    Modifier.testTag(option.replace(" ", "") + "_dropdownItem_id")
                                 )
                             },
                             onClick = {

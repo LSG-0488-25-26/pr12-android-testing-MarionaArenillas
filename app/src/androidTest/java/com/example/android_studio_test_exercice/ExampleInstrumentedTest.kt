@@ -3,6 +3,7 @@ package com.example.android_studio_test_exercice
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import org.junit.Rule
@@ -72,4 +73,13 @@ class ExampleInstrumentedTest {
             .onNodeWithTag("slider_id")
             .assertIsDisplayed()
     }
+
+    // Comprova que el text del DropdownMenu existeix i es mostra
+    @Test
+    fun checkDropdownTextExists() {
+        composeTestRule
+            .onNodeWithTag("dropdownText_id")
+            .assertIsDisplayed()
+    }
+
 }
