@@ -64,4 +64,12 @@ class ExampleInstrumentedTest {
             .onNodeWithTag("Raphina_radio_id")
             .assertIsDisplayed()
     }
+
+    // Comprova que el Slider existeix i es mostra correctament
+    @Test
+    fun checkSliderExists() {
+        composeTestRule
+            .onNodeWithTag("slider_id")
+            .assertIsDisplayed()
+    }
 }
