@@ -273,11 +273,16 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 value = searchText,
                 onValueChange = { myViewModel.setSearchText(it) },
                 label = { Text("Buscar...") },
-                modifier = Modifier
+                // testTag per localitzar el camp de text als tests de UI
+                modifier = Modifier.testTag("searchTextField_id"),
             )
 
             // Botó que executa la cerca
-            Button(onClick = { myViewModel.performSearch() }) {
+            Button(
+                onClick = { myViewModel.performSearch() },
+                // testTag per localitzar el botó Buscar als tests de UI
+                modifier = Modifier.testTag("searchButton_id")
+            ) {
                 Text("Buscar")
             }
 
