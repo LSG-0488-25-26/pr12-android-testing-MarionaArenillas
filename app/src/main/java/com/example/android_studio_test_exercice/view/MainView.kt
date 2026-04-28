@@ -224,7 +224,9 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             Slider(
                 value = sliderValue,
                 onValueChange = { myViewModel.setSliderValue(it) },
-                valueRange = 0f..100f
+                valueRange = 0f..100f,
+                // testTag per localitzar el Slider als tests de UI
+                modifier = Modifier.testTag("slider_id")
             )
 
             // DropdownMenu: menú desplegable amb diferents opcions
