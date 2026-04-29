@@ -105,4 +105,5 @@ Captura dels UI Tests:
 En aquest enllaç trobareu el video de la demostració de l'aplicació: [Video tests](https://drive.google.com/drive/folders/1R2CUE6wfIwF6TVYI9gszHrWpOcwcDENv?usp=share_link)
 
 Aquí teniu el GIF de la comprovació dels tests de l'aplicació:
-<!--![GIF tests](docs/)-->
+
+![GIF tests](docs/AndroidTesting.gif)
